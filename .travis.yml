@@ -1,8 +1,17 @@
 language: node_js
 node_js:
-  - 'stable'
+- stable
 install: npm install
 services:
-  - mongodb
+- mongodb
 script: npm test
 after_success: npm run coverage
+deploy:
+  provider: heroku
+  api_key:
+    secure: pL1o0YzkRUHA3zuVNcmNz/ybhB0g4Ld5K7yxpv/iBS7QFqEQuy1ClVgygB/M9wPPMVuQHgoBevJJ7zWONUZHwRKcU1W03GcpLg4c9sptmCzbfYTFyA2mNOezb/99Q1Bx3gnvHTZRKftxucQh+watKYG88OGgNtUwID8O39qrg4+zykGaaFsuhNmDcd82VI1aBc40nFftKWM8ti6Rf8fyD3jsk7bbG6uoDRlZNkqvdEdGwtXtVgwsI0eEvXgA5/Gk+ECTe9YKCcoHieuMf9NKW2Xs+EOoWyqiWAEbLZ4NfERsrq1QdcvLC5ERZSfQ7XbUOEAsk43PihAwNnRcg1gyzA7DCLmbBhE1/RGulVHfGjb6qqPufWOHqCd1kGqaiASXeAz47Yc+GiGmS5G+i6CBprpum160wsXPXVSaiYaWr6q1YJb0/TANwxVDNnEuWqFaN2AsQw2Bw/uV5Py/pPSilpATJyksPJTpMG56xfcFti0JeQJAvA43x8qNhe3b6VKnzgcJrD1r/z67T4B8YBw6KMXp6lIVuWEboBA+y6xyb+SX5WrnlySz9gRkP9IJwkm6hmjh4iBOIV0Ox0PV5jqdWPJhF2CkBLHuZvT8jyHAO//az/qHjVezyYUm3TGd5XoV+gRroNOySFkBIwsvTy1SwPSSvuEoL/ArUteiN1ZIkK4=
+  app: rico-ci-app
+  on:
+    repo: rderosa1/mongodb-mongoose-express-ci
+  run:
+    - "node seed/userProjects.js"
